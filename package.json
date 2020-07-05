@@ -1,0 +1,48 @@
+{
+  "name": "ts-mobx-basic-stores",
+  "version": "0.0.1",
+  "description": "The collection of helpers written with mobx and typescript.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/ tests/ --ext ts --fix",
+    "test": "jest"
+  },
+  "author": "Konstantin Tarasov",
+  "files": [
+    "build",
+    "README.md"
+  ],
+  "homepage": "https://bitbucket.org/terrasoff/ts-mobx-basic-stores/src",
+  "bugs": {
+    "url": "https://bitbucket.org/terrasoff/ts-mobx-basic-stores"
+  },
+  "keywords": [
+    "mobx",
+    "typescript",
+    "helpers",
+    "observable",
+    "array",
+    "object",
+    "timer",
+    "dispose",
+    "toggle",
+    "selection",
+    "state",
+    "value"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.14",
+    "@typescript-eslint/eslint-plugin": "2.3.3",
+    "@typescript-eslint/parser": "2.19.2",
+    "eslint": "6.8.0",
+    "jest": "^25.2.1",
+    "mobx": "5.10.1",
+    "ts-jest": "25.2.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "3.9.2"
+  }
+}

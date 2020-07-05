@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "target": "esnext",
+    "module": "esnext",
+    "sourceMap": true,
+    "outDir": "build",
+    "strictPropertyInitialization": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": false,
+    "baseUrl": "./src",
+    "paths": {
+      "@src/*": ["*"],
+      "@src": ["./", "./*"]
+    }
+  },
+  "files": [
+    "src/index.ts"
+  ],
+  "exclude": [
+    "node_modules/**/*"
+  ]
+}

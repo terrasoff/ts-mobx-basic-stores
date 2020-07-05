@@ -1,0 +1,1 @@
+export { ArrayFilterPredicateType } from './ArrayFilterPredicateType';

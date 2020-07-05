@@ -1,0 +1,18 @@
+image: node:13.13.0-stretch
+
+pipelines:
+  branches:
+    feature/*:
+      - step:
+          name: Test feature
+          caches:
+            - node
+          script:
+            - npm ci && npm run lint && npm run test
+    bugfix/*:
+      - step:
+          name: Test bugfix
+          caches:
+            - node
+          script:
+            - npm ci && npm run lint && npm run test
