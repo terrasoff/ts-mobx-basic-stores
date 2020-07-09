@@ -1,22 +1,29 @@
 import { ValueStore } from '@src';
 
-describe('Test object store', () => {
+test('Check default', () => {
+  const store = new ValueStore();
 
-  test('Check default', () => {
-    const store = new ValueStore();
+  expect(store.value).toBeUndefined();
+  expect(store.isDefault).toBeTruthy();
+});
+test('Check value', () => {
+  const value = 'value';
+  const store = new ValueStore<string>(value);
 
-    expect(store.value).toBeUndefined();
-    expect(store.isDefault).toBeTruthy();
-  });
-
-  test('Check value', () => {
+  expect(store.value).toEqual(value);
+  expect(store.isDefault).toBeFalsy();
+  store.reset();
+  expect(store.isDefault).toBeTruthy();
+});
+describe('is', () => {
+  test('true', () => {
     const value = 'value';
     const store = new ValueStore<string>(value);
-
-    expect(store.value).toEqual(value);
-    expect(store.isDefault).toBeFalsy();
-    store.reset();
-    expect(store.isDefault).toBeTruthy();
+    expect(store.is(value)).toBeTruthy();
   });
-
+  test('false', () => {
+    const value = 'value1';
+    const store = new ValueStore<string>(value);
+    expect(store.is('value2')).toBeFalsy();
+  });
 });

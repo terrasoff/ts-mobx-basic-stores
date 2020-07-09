@@ -46,4 +46,8 @@ export class ValueStore<T extends ScalarValue> {
     this.set(this._defaultValue);
   }
 
+  public is(value: T): boolean {
+    return this.value === value;
+  }
+
 }
