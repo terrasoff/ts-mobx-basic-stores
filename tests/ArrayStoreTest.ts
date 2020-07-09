@@ -1,5 +1,5 @@
 import { ArrayStore } from '@src';
-import { ArrayElementNotFoundError, ArrayIndexNotFoundError } from "../src/Array/Errors";
+import { ArrayElementNotFoundError, ArrayIndexNotFoundError } from '../src/Array/Errors';
 
 describe('count', () => {
 
@@ -166,7 +166,7 @@ describe('removeAt', () => {
   test('Insert to existing array', () => {
     const store = new ArrayStore<number>([1, 2, 3]);
     expect(store.removeAt(1)).toBeTruthy();
-    expect(store.items).toEqual([1, 3])
+    expect(store.items).toEqual([1, 3]);
   });
 
 });
