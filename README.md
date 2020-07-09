@@ -6,6 +6,12 @@ These are most frequently used libraries in my reactjs/mobx projects. So I segre
 
 Represents the logic of an observable array.
 
+## AsyncOperationStore
+
+Represents the logic of an observable async operation.
+
+You can easily control operation state based on OperationState, run operation in single instance and set up retries.
+
 ## Disposer
 
 Represents a container with callbacks (like mobx reactions or any others) that should be called later to perform some disposal.
