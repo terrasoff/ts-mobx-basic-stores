@@ -10,4 +10,5 @@ test:
 	docker-compose exec node jest
 
 publish:
+	docker-compose exec node bash -c "tsc"
 	docker-compose exec node bash -c "npm publish"
