@@ -2,7 +2,7 @@ import { AsyncOperationStoreOptions } from './AsyncOperationStoreOptions';
 import { OperationStateStore } from '../OperationState';
 import { ObjectStore } from '../Object';
 import { WrongNumberOfRetriesError } from './Errors';
-import { computed } from "mobx";
+import { computed } from 'mobx';
 
 export class AsyncOperationStore<P = undefined, R = void> {
 
@@ -13,6 +13,8 @@ export class AsyncOperationStore<P = undefined, R = void> {
   private readonly _error = new ObjectStore<Error>();
 
   private readonly _operation: (params: P) => Promise<R>;
+
+  private readonly _result = new ObjectStore<R>();
 
   private _resultPromise: Promise<R>;
 
@@ -44,6 +46,11 @@ export class AsyncOperationStore<P = undefined, R = void> {
   @computed
   public get error(): Error {
     return this._error.value;
+  }
+
+  @computed
+  public get result(): R {
+    return this._result.value;
   }
 
   public execute(params: P): Promise<R> {
@@ -80,6 +87,7 @@ export class AsyncOperationStore<P = undefined, R = void> {
     while (tries-- > 0) {
       try {
         const result = await this._operation(this._params);
+        this._result.set(result);
         resolve(result);
         state.done();
         break;
