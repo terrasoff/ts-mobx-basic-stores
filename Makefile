@@ -21,7 +21,8 @@ clean:
 build: clean test
 	docker-compose exec node tsc
 
-publish: build release
-	git push origin --all --tags
-	git push github --all --tags
+publish: build
+	@$(call release,patch)
+	git push origin --all
+	git push github --all
 	docker-compose exec node bash -c "npm publish"
