@@ -1,4 +1,4 @@
-import { ArrayStore } from '@src/Array';
+import { ArrayStore } from '../Array';
 
 export type SelectionStoreOptions<T> = {
 

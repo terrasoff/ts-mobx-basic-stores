@@ -1,6 +1,6 @@
 import { ToggleStateType } from './ToggleStateType';
 import { computed } from 'mobx';
-import { ValueStore } from '@src';
+import { ValueStore } from '../Value';
 
 export class ToggleStateStore {
 

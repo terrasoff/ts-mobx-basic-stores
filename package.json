@@ -1,6 +1,6 @@
 {
   "name": "ts-mobx-basic-stores",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "The collection of helpers written with mobx and typescript.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
