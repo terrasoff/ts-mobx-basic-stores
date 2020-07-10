@@ -1,14 +1,16 @@
 default: test clean build
 
-build:
-	docker-compose exec node tsc
+test:
+	docker-compose exec node jest
 
 clean:
 	sudo rm -rf build
 
-test:
-	docker-compose exec node jest
+build: clean test
+	docker-compose exec node tsc
 
-publish:
-	docker-compose exec node bash -c "tsc"
+publish: build
+	git tag ${sed -nE 's/^\s*"version": "(.*?)",$/\1/p' package.json}
+	git push origin --all
+	git push github --all
 	docker-compose exec node bash -c "npm publish"
