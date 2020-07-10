@@ -1,4 +1,4 @@
-import { AsyncOperationStore, WrongNumberOfRetriesError } from '../src/AsyncOperation';
+import { AsyncOperationStore, WrongNumberOfRetriesError } from '@src';
 
 const emptyCallback = (): Promise<void> => new Promise<void>(resolve => resolve());
 

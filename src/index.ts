@@ -1,8 +1,10 @@
 export { ArrayStore } from './Array';
+export { AsyncOperationStore, WrongNumberOfRetriesError } from './AsyncOperation';
 export { DisposerStore } from './Disposer';
 export { ObjectStore } from './Object';
 export { OperationStateStore } from './OperationState';
+export { SelectionStore } from './Selection';
+export { TimerStore } from './Timer';
 export { ToggleStateStore } from './ToggleState';
 export { ValueStore } from './Value';
-export { SelectionStore } from './Selection';
 export { VisibilityStore } from './Visibility';
