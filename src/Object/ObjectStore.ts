@@ -1,4 +1,4 @@
-import { action, computed, observable, toJS } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { ObjectStoreOptions } from './ObjectStoreOptions';
 
 export class ObjectStore<T extends Object, K extends keyof T = keyof T> {
