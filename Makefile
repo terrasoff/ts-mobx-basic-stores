@@ -12,6 +12,12 @@ define release
 	git tag "$$NEXT_VERSION" -m "Version $$NEXT_VERSION"
 endef
 
+define publish
+	git push origin --all
+	git push github --all
+	docker-compose exec node bash -c "npm publish"
+endef
+
 test:
 	docker-compose exec node jest
 
@@ -21,8 +27,14 @@ clean:
 build: clean test
 	docker-compose exec node tsc
 
-publish: build
+release-patch: build
 	@$(call release,patch)
-	git push origin --all
-	git push github --all
-	docker-compose exec node bash -c "npm publish"
+	@$(call publish)
+
+release-minor: build
+	@$(call release,minor)
+	@$(call publish)
+
+release-major: build
+	@$(call release,major)
+	@$(call publish)
