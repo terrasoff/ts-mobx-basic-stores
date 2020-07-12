@@ -20,11 +20,11 @@ Represents a container with callbacks (like mobx reactions or any others) that s
 
 You can fill the container in a runtime and call dispose-method accordingly to yours application lifecycle.
 
-### Object
+### [Object](https://codesandbox.io/s/observable-object-store-rx5jg)
 
 Represents the logic of an observable object.
 
-You can mutate the object and  
+Useful in case of forms handling and representing complex data structures.
 
 ### OperationState
 
@@ -54,7 +54,7 @@ Represents the logic of an observable scalar value.
 
 # Example 
 
-In progress. 
+Click to the headers :point_up: to navigate to the example page. 
 
 # Installation
 
