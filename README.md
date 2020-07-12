@@ -8,7 +8,7 @@ These are most frequently used libraries in my reactjs/mobx projects.
 
 Represents the logic of an observable array.
 
-### [AsyncOperationStore](https://codesandbox.io/s/async-operation-store-fsbg1)
+### [AsyncOperation](https://codesandbox.io/s/async-operation-store-fsbg1)
 
 Represents the logic of an observable async operation.
 
@@ -42,7 +42,7 @@ Allows managing selection state. For the instance the checkbox lists or radio bu
 
 Simplify a timer workflow.
 
-### ToggleState
+### [ToggleState](https://codesandbox.io/s/observable-toggle-state-usl0h)
 
 Represents the state of the toggle operation (on/off/indeterminate). 
 
