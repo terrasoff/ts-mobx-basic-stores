@@ -8,3 +8,4 @@ export { TimerStore } from './Timer';
 export { ToggleStateStore } from './ToggleState';
 export { ValueStore } from './Value';
 export { VisibilityStore } from './Visibility';
+export * from './Types';

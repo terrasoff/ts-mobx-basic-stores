@@ -38,7 +38,7 @@ Represents the logic of an observable selection.
 
 Allows managing selection state. For the instance the checkbox lists or radio button lists.
 
-### Timer
+### [Timer](https://codesandbox.io/s/observable-timer-store-x94f5)
 
 Simplify a timer workflow.
 
@@ -69,6 +69,8 @@ Run `npm run lint`.
 Run `npm run test`.
 
 # Roadmap
+
+- Add Number store.
 
 - Get stable 1.0.0 release ready.
 
