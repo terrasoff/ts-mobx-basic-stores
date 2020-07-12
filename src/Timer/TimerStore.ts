@@ -28,7 +28,7 @@ export class TimerStore {
   constructor(
     operation: VoidFunction,
     timout: NumberOfMilliseconds,
-    options: TimerStoreOptions,
+    options?: TimerStoreOptions,
   ) {
     this.start = this.start.bind(this);
     this.pause = this.pause.bind(this);
@@ -39,7 +39,12 @@ export class TimerStore {
 
     this._operation = operation;
     this._timeout = timout;
-    this._options = options;
+    this._options = Object.assign(
+      {
+        // add default options if required
+      },
+      options,
+    );
   }
 
   @computed
