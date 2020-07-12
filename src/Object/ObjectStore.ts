@@ -14,6 +14,7 @@ export class ObjectStore<T extends Object, K extends keyof T = keyof T> {
   ) {
     this.set = this.set.bind(this);
     this.reset = this.reset.bind(this);
+    this.change = this.change.bind(this);
 
     this._value = value;
     this._defaultValue = options?.defaultValue;
