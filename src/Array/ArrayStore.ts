@@ -46,6 +46,16 @@ export class ArrayStore<T> {
     return this._items.length === 0;
   }
 
+  @computed
+  public get first(): T | undefined {
+    return this._items[0] || undefined;
+  }
+
+  @computed
+  public get last(): T | undefined {
+    return this.items[this.items.length - 1] || undefined;
+  }
+
   @action
   public add(...item: Array<T>): this {
     this._items.push(...item);
@@ -94,15 +104,19 @@ export class ArrayStore<T> {
     return true;
   }
 
-  public filter(predicate: (value: T) => boolean): void {
+  public filter(predicate: (value: T) => boolean): this {
     this.setItems(
       this._items.filter(predicate)
     );
+
+    return this;
   }
 
   @action
-  public splice(index: number, count: number): void {
+  public splice(index: number, count: number): this {
     this._items.splice(index, count);
+
+    return this;
   }
 
   public some(item: T): boolean {
@@ -149,22 +163,16 @@ export class ArrayStore<T> {
     return this;
   }
 
-  @computed
-  public get first(): T | undefined {
-    return this._items[0] || undefined;
-  }
-
-  @computed
-  public get last(): T | undefined {
-    return this.items[this.items.length - 1] || undefined;
-  }
-
-  public reset(): void {
+  public reset(): this {
     this.setItems(this._defaultValue);
+
+    return this;
   }
 
-  public clear(): void {
+  public clear(): this {
     this.setItems([]);
+
+    return this;
   }
 
   public toggle(item: T): this {
