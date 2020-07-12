@@ -28,14 +28,14 @@ export class TimerStore {
   constructor(
     operation: VoidFunction,
     timout: NumberOfMilliseconds,
-    options?: TimerStoreOptions,
+    options: Partial<TimerStoreOptions> = {},
   ) {
     this.start = this.start.bind(this);
     this.pause = this.pause.bind(this);
     this.resume = this.resume.bind(this);
     this.stop = this.stop.bind(this);
     this.startNextLap = this.startNextLap.bind(this);
-    this.scheduleNextLap = this.startNextLap.bind(this);
+    this.scheduleNextLap = this.scheduleNextLap.bind(this);
 
     this._operation = operation;
     this._timeout = timout;
