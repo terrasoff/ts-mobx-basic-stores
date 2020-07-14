@@ -1,0 +1,1 @@
+export { StringStore } from './StringStore';

@@ -6,6 +6,7 @@ export { NumericStore } from './Numeric';
 export { ObjectStore } from './Object';
 export { OperationStateStore } from './OperationState';
 export { SelectionStore } from './Selection';
+export { StringStore } from './String';
 export { TimerStore } from './Timer';
 export { ToggleStateStore } from './ToggleState';
 export { ValueStore } from './Value';
