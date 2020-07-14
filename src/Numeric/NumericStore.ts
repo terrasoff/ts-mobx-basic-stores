@@ -22,6 +22,21 @@ export class NumericStore {
     return this._value;
   }
 
+  @computed
+  public get isNegative(): boolean {
+    return this.value < 0;
+  }
+
+  @computed
+  public get isPositive(): boolean {
+    return this.value > 0;
+  }
+
+  @computed
+  public get isZero(): boolean {
+    return this.value === 0;
+  }
+
   @action
   public add(value: number): this {
     this._value = this._value + value;

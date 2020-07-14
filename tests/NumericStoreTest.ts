@@ -1,5 +1,47 @@
 import { NumericStore } from '@src';
 
+describe('isPositive', () => {
+  test('Zero is not positive', () => {
+    const store = new NumericStore(0);
+    expect(store.isPositive).toBeFalsy();
+  });
+  test('Negative is not positive', () => {
+    const store = new NumericStore(-1);
+    expect(store.isPositive).toBeFalsy();
+  });
+  test('Positive is positive', () => {
+    const store = new NumericStore(1);
+    expect(store.isPositive).toBeTruthy();
+  });
+});
+describe('isNegative', () => {
+  test('Zero is not negative', () => {
+    const store = new NumericStore(0);
+    expect(store.isNegative).toBeFalsy();
+  });
+  test('Positive is not negative', () => {
+    const store = new NumericStore(1);
+    expect(store.isNegative).toBeFalsy();
+  });
+  test('Negative is negative', () => {
+    const store = new NumericStore(-1);
+    expect(store.isNegative).toBeTruthy();
+  });
+});
+describe('isZero', () => {
+  test('Positive is not negative', () => {
+    const store = new NumericStore(1);
+    expect(store.isZero).toBeFalsy();
+  });
+  test('Negative is negative', () => {
+    const store = new NumericStore(-1);
+    expect(store.isZero).toBeFalsy();
+  });
+  test('Zero is zero', () => {
+    const store = new NumericStore(0);
+    expect(store.isZero).toBeTruthy();
+  });
+});
 test('add', () => {
   const store = new NumericStore(0);
   expect(store.add(1).value).toEqual(1);

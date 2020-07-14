@@ -24,7 +24,7 @@ Represents a container with callbacks (like mobx reactions or any others) that s
 
 You can fill the container in a runtime and call dispose-method accordingly to yours application lifecycle.
 
-### Numeric
+### [Numeric](https://codesandbox.io/s/observable-numeric-store-6clbc)
 
 Represents the logic of an observable numeric value.
 
