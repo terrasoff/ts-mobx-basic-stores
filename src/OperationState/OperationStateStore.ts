@@ -37,7 +37,7 @@ export class OperationStateStore {
   }
 
   @computed
-  public get isFail(): boolean {
+  public get isFailed(): boolean {
     return this._status === OperationState.Failed;
   }
 

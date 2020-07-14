@@ -34,7 +34,7 @@ Represents the logic of an observable object.
 
 Useful in case of forms handling and representing complex data structures.
 
-### OperationState
+### [OperationState](https://codesandbox.io/s/observable-operation-state-store-cpeuu)
 
 Represents the logic of an observable operation state with typical transitions. 
 
@@ -50,13 +50,13 @@ Allows managing selection state. For the instance the checkbox lists or radio bu
 
 Simplify a timer workflow.
 
-### [ToggleState](https://codesandbox.io/s/observable-toggle-state-usl0h)
+### [ToggleState](https://codesandbox.io/s/observable-toggle-state-png6g)
 
 Represents the state of the toggle operation (on/off/indeterminate). 
 
 For the instance, helps to control the checkbox state.
 
-### Value
+### [Value](https://codesandbox.io/s/observable-value-z6yxw)
 
 Represents the logic of an observable scalar value.
 

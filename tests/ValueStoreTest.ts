@@ -27,3 +27,13 @@ describe('is', () => {
     expect(store.is('value2')).toBeFalsy();
   });
 });
+test('Reset to default value', () => {
+  const value1 = 'value';
+  const value2 = 'another value';
+  const store = new ValueStore<string>(value1, { defaultValue: value1 });
+  expect(store.value).toEqual(value1);
+  store.set(value2);
+  expect(store.value).toEqual(value2);
+  store.reset();
+  expect(store.value).toEqual(value1);
+});

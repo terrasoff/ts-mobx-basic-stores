@@ -33,7 +33,7 @@ describe('Test object store', () => {
     const store = new OperationStateStore();
 
     store.fail();
-    expect(store.isFail).toBeTruthy();
+    expect(store.isFailed).toBeTruthy();
   });
 
   test('pause', () => {

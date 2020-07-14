@@ -57,6 +57,6 @@ describe('execute with retries', () => {
     expect(store.execute()).rejects.toBeInstanceOf(Error);
     expect(store.error).toBeInstanceOf(Error);
     expect(operation.mock.calls.length).toBe(numberOfRetries + 1);
-    expect(store.state.isFail).toBeTruthy();
+    expect(store.state.isFailed).toBeTruthy();
   });
 });
