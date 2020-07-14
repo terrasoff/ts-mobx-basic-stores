@@ -21,12 +21,12 @@ test('divide', () => {
   expect(store.divide(2).value).toEqual(2);
 });
 test('increment', () => {
-  const store = new NumericStore(8);
+  const store = new NumericStore(0);
   expect(store.increment().value).toEqual(1);
   expect(store.increment().value).toEqual(2);
 });
 test('decrement', () => {
-  const store = new NumericStore(8);
+  const store = new NumericStore(0);
   expect(store.decrement().value).toEqual(-1);
   expect(store.decrement().value).toEqual(-2);
 });
