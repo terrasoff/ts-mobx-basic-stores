@@ -24,6 +24,10 @@ Represents a container with callbacks (like mobx reactions or any others) that s
 
 You can fill the container in a runtime and call dispose-method accordingly to yours application lifecycle.
 
+### Numeric
+
+Represents the logic of an observable numeric value.
+
 ### [Object](https://codesandbox.io/s/observable-object-store-rx5jg)
 
 Represents the logic of an observable object.
@@ -75,8 +79,6 @@ Run `npm run test`.
 # Roadmap
 
 - Add tests to timer store.
-
-- Add Number store.
 
 - Add String store.
 

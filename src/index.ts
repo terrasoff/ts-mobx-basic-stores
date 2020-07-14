@@ -2,6 +2,7 @@ export { ArrayStore } from './Array';
 export { AsyncOperationStore, WrongNumberOfRetriesError } from './AsyncOperation';
 export { BooleanStore } from './Boolean';
 export { DisposerStore } from './Disposer';
+export { NumericStore } from './Numeric';
 export { ObjectStore } from './Object';
 export { OperationStateStore } from './OperationState';
 export { SelectionStore } from './Selection';
