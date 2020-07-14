@@ -14,6 +14,10 @@ Represents the logic of an observable async operation.
 
 You can easily control operation state based on OperationState, run operation in single instance and set up retries.
 
+### Boolean
+
+Represents the logic of an observable boolean value.
+
 ### [Disposer](https://codesandbox.io/s/disposer-disposable-container-p9j0i)
 
 Represents a container with callbacks (like mobx reactions or any others) that should be called later to perform some disposal.
@@ -70,7 +74,11 @@ Run `npm run test`.
 
 # Roadmap
 
+- Add tests to timer store.
+
 - Add Number store.
+
+- Add String store.
 
 - Get stable 1.0.0 release ready.
 
