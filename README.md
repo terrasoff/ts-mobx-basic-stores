@@ -1,22 +1,32 @@
 # Description
 
-The collection of helpers written with mobx and typescript which helps you to simplify code and organize you application.
+The collection of helpers :hammer_and_wrench: written with mobx :muscle: and typescript :heart: which helps you to simplify code and organize you application.
 
-These are most frequently used libraries in my reactjs/mobx projects. 
+These are most :blue_heart frequently used libraries in my reactjs/mobx projects. 
+
+# Example 
+
+Click to the headers :point_down: to navigate to the example page. 
 
 ### [Array](https://codesandbox.io/s/observable-array-store-johng)
 
-Represents the logic of an observable array.
+Represents the logic of an observable array. Control your collections with that store.
 
 ### [AsyncOperation](https://codesandbox.io/s/async-operation-store-okwh7)
 
-Represents the logic of an observable async operation.
+Represents the logic of an observable async operation. Useful for fetch/submit data from/to API.
 
 You can easily control operation state based on OperationState, run operation in single instance and set up retries.
 
-### Boolean
+### [Boolean](https://codesandbox.io/s/observable-boolean-store-5pscq)
 
-Represents the logic of an observable boolean value.
+Represents the logic of an observable boolean value. 
+
+Looks similar to **ToggleState** but semantically is more appropriate for boolean flags like.
+
+Cases for **BooleanStore**: `phone.isActivated.true` or `car.isAvailable.false`.
+
+Cases for **ToggleState**: `modal.visibility.isOff` or `lighter.power.isOn`. 
 
 ### [Disposer](https://codesandbox.io/s/disposer-disposable-container-gks80)
 
@@ -60,10 +70,6 @@ For the instance, helps to control the checkbox state.
 
 Represents the logic of an observable scalar value.
 
-# Example 
-
-Click to the headers :point_up: to navigate to the example page. 
-
 # Installation
 
 `npm i --save ts-mobx-basic-stores`
@@ -79,8 +85,6 @@ Run `npm run test`.
 # Roadmap
 
 - Add tests to timer store.
-
-- Add String store.
 
 - Get stable 1.0.0 release ready.
 
