@@ -2,7 +2,7 @@
 
 The collection of helpers :hammer_and_wrench: written with mobx :muscle: and typescript :heart: which helps you to simplify code and organize you application.
 
-These are most :blue_heart frequently used libraries in my reactjs/mobx projects. 
+These are most :blue_heart: frequently used libraries in my reactjs/mobx projects. 
 
 # Example 
 
