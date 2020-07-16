@@ -8,6 +8,9 @@ type ScalarValue =
   | boolean
   | Date
   | NodeJS.Timer
+  | null
+  | unknown
+  | void
   ;
 
 export class ValueStore<T extends ScalarValue> {
