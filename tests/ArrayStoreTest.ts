@@ -283,15 +283,23 @@ describe('clear', () => {
 });
 
 describe('toggle', () => {
-
   test('Toggle from empty state', () => {
     const store = new ArrayStore<number>();
     expect(store.toggle(1).items).toEqual([1]);
   });
-
   test('Toggle from existing state', () => {
     const store = new ArrayStore<number>([1]);
     expect(store.toggle(1).items).toEqual([]);
   });
+});
 
+describe('get', () => {
+  test('Get by index', () => {
+    const store = new ArrayStore<number>([1]);
+    expect(store.at(0)).toEqual(1);
+  });
+  test('Get by undefined index', () => {
+    const store = new ArrayStore<number>([1]);
+    expect(store.at(1)).toBeUndefined();
+  });
 });

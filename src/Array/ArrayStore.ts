@@ -14,6 +14,7 @@ export class ArrayStore<T> {
   ) {
     this.insert = this.insert.bind(this);
     this.add = this.add.bind(this);
+    this.at = this.at.bind(this);
     this.remove = this.remove.bind(this);
     this.removeAt = this.removeAt.bind(this);
     this.splice = this.splice.bind(this);
@@ -61,6 +62,10 @@ export class ArrayStore<T> {
     this._items.push(...item);
 
     return this;
+  }
+
+  public at(index: number): T {
+    return toJS(this._items)[index] || undefined;
   }
 
   @action
