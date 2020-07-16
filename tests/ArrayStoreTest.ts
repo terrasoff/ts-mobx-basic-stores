@@ -53,14 +53,34 @@ describe('setItems()', () => {
 
 });
 
-describe('isDefault', () => {
-
+describe('constructor', () => {
   test('Default value is empty array', (): void => {
     const store = new ArrayStore<number>();
     expect(store.items).toEqual([]);
     expect(store.isEmpty).toBeTruthy();
   });
+});
 
+describe('isDefault', () => {
+  test('Positive', () => {
+    const store = new ArrayStore<number>();
+    expect(store.isDefault).toBeTruthy();
+  });
+  test('Negative: add element', () => {
+    const store = new ArrayStore<number>();
+    store.add(1);
+    expect(store.isDefault).toBeFalsy();
+  });
+  test('Negative: remove element', () => {
+    const store = new ArrayStore<number>([1]);
+    store.removeAt(0);
+    expect(store.isDefault).toBeFalsy();
+  });
+  test('Negative: change element', () => {
+    const store = new ArrayStore<number>([1]);
+    store.updateByIndex(0, 2);
+    expect(store.isDefault).toBeFalsy();
+  });
 });
 
 describe('filter()', () => {
@@ -92,7 +112,6 @@ describe('filter()', () => {
 });
 
 describe('isEmpty', () => {
-
   test.each(
     [
       [
@@ -114,31 +133,25 @@ describe('isEmpty', () => {
 });
 
 describe('add', () => {
-
   test('Add to empty array', () => {
     const store = new ArrayStore<number>();
     expect(store.add(1).items).toEqual([1]);
   });
-
   test('Add to existing array', () => {
     const store = new ArrayStore<number>([1]);
     expect(store.add(2).items).toEqual([1, 2]);
   });
-
 });
 
 describe('insert', () => {
-
   test('Insert to empty array', () => {
     const store = new ArrayStore<number>();
     expect(store.insert(0, 1).items).toEqual([1]);
   });
-
   test('Insert to existing array', () => {
     const store = new ArrayStore<number>([1, 3]);
     expect(store.insert(1, 2).items).toEqual([1, 2, 3]);
   });
-
 });
 
 describe('remove', () => {

@@ -33,6 +33,27 @@ export class ArrayStore<T> {
   }
 
   @computed
+  public get isDefault(): boolean {
+    const a = this._defaultValue;
+    const b = this.items;
+
+    if (a === b) {
+      return true;
+    }
+    if (a.length !== b.length) {
+      return false;
+    }
+
+    for (var i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  @computed
   public get items(): Array<T> {
     return this._items;
   }
