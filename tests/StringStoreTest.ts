@@ -1,10 +1,30 @@
 import { StringStore } from '@src';
 
-test('set', () => {
+test('constructor', () => {
   const store = new StringStore();
   expect(store.value).toEqual('');
+});
+describe('isDefault', () => {
+  test('Positive', () => {
+    const store = new StringStore('Hello world');
+    expect(store.isDefault).toBeTruthy();
+  });
+  test('Negative', () => {
+    const store = new StringStore('Hello world');
+    store.set('Bye world');
+    expect(store.isDefault).toBeFalsy();
+  });
+});
+test('set', () => {
+  const store = new StringStore();
   const str = 'hello';
   expect(store.set(str).value).toEqual(str);
+});
+test('reset', () => {
+  const store = new StringStore();
+  expect(store.isDefault).toBeTruthy();
+  expect(store.set('Bye world').isDefault).toBeFalsy();
+  expect(store.reset().isDefault).toBeTruthy();
 });
 test('concat', () => {
   const store = new StringStore('hello');

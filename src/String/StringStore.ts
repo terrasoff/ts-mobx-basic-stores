@@ -1,12 +1,11 @@
 import { action, computed, observable } from 'mobx';
-import { StringReplaceValueOrFunctionType, StringSearchValueType } from "@src/String/Types";
-
-
 
 export class StringStore {
 
   @observable
   private _value: string;
+
+  private readonly _defaultValue: string;
 
   constructor(value: string = '') {
     this.concat = this.concat.bind(this);
@@ -19,7 +18,13 @@ export class StringStore {
     this.toUpperCase = this.toUpperCase.bind(this);
     this.set = this.set.bind(this);
 
+    this._defaultValue = value;
     this._value = value;
+  }
+
+  @computed
+  public get isDefault(): boolean {
+    return this._value === this._defaultValue;
   }
 
   @computed
@@ -90,6 +95,11 @@ export class StringStore {
     return this;
   }
 
-  // add method on demand
+  @action
+  public reset(): this {
+    this._value = this._defaultValue;
+
+    return this;
+  }
 
 }
