@@ -17,6 +17,7 @@ export class StringStore {
     this.toLowerCase = this.toLowerCase.bind(this);
     this.toUpperCase = this.toUpperCase.bind(this);
     this.set = this.set.bind(this);
+    this.reset = this.reset.bind(this);
 
     this._defaultValue = value;
     this._value = value;
