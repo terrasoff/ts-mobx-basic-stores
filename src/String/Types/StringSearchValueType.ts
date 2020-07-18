@@ -1,0 +1,1 @@
+export type StringSearchValueType = string | RegExp;

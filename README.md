@@ -56,6 +56,10 @@ Represents the logic of an observable selection.
 
 Allows managing selection state. For the instance the checkbox lists or radio button lists.
 
+### [String](https://codesandbox.io/s/observable-string-store-t6y85)
+
+Represents the logic of an observable string.
+
 ### [Timer](https://codesandbox.io/s/observable-timer-store-3b9jx)
 
 Simplify a timer workflow.
