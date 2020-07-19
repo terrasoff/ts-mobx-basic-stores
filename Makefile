@@ -19,7 +19,7 @@ define publish
 endef
 
 test:
-	docker-compose exec node jest
+		docker-compose exec node bash -c "npm run test"
 
 clean:
 	sudo rm -rf build
