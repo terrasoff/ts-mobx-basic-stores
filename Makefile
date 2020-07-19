@@ -27,6 +27,9 @@ clean:
 build: clean test
 	docker-compose exec node tsc
 
+publish:
+	@$(call publish)
+
 release-patch: build
 	@$(call release,patch)
 	@$(call publish)
