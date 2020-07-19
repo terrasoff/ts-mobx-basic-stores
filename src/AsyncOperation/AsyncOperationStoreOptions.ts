@@ -6,4 +6,6 @@ export type AsyncOperationStoreOptions = {
 
   numberOfRetries?: number;
 
+  abort?(): Promise<void>;
+
 }

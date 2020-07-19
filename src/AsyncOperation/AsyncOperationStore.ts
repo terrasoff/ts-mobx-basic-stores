@@ -104,6 +104,13 @@ export class AsyncOperationStore<P = undefined, R = void> {
     }
   }
 
+  public async abort(): Promise<void> {
+    if (this._options.abort) {
+      await this._options.abort();
+    }
+    this.state.abort();
+  }
+
   public reset(): void {
     this.state.idle();
   }

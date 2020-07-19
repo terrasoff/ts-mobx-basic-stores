@@ -60,3 +60,13 @@ describe('execute with retries', () => {
     expect(store.state.isFailed).toBeTruthy();
   });
 });
+test('abort', async(): Promise<void> => {
+  const execute = jest.fn();
+  const abort = jest.fn();
+  const store = new AsyncOperationStore<void, number>(execute, { abort });
+  store.execute();
+  await store.abort();
+  expect(execute.mock.calls.length).toBe(1);
+  expect(abort.mock.calls.length).toBe(1);
+  expect(store.state.isAborted).toBeTruthy();
+});
