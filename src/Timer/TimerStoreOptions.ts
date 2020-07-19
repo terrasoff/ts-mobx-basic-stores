@@ -1,6 +1,9 @@
+import { NumberOfMilliseconds } from '../Types';
+
 export type TimerStoreOptions = {
 
-  // TODO implement
   maxLaps?: number;
+
+  delayBetweenLoops?: NumberOfMilliseconds;
 
 }

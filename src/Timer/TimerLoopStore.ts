@@ -6,7 +6,7 @@ import { NumericStore } from '@src';
 /**
  * TODO Add lap timer support
  */
-export class LapStore {
+export class TimerLoopStore {
 
   private readonly _startedAt = new ValueStore<UnixTimestamp>();
 

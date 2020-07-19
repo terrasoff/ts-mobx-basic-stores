@@ -83,11 +83,6 @@ export class TimerStore {
     );
   }
 
-  private clearInterval(): void {
-    clearInterval(this._timer.value);
-    this._timer.reset();
-  }
-
   public async start(): Promise<void> {
     if (this.isRunning) {
       return;
@@ -100,6 +95,18 @@ export class TimerStore {
     await this._operation.execute();
 
     this._doneAt.set(new Date().getTime());
+    this.scheduleNextLoop();
+  }
+
+  private scheduleNextLoop(): void {
+    if (this._options.delayBetweenLoops) {
+      this._timer.set(
+        setInterval(
+          this.start,
+          this._timeout,
+        )
+      );
+    }
   }
 
   public async cancel(): Promise<void> {
@@ -108,6 +115,15 @@ export class TimerStore {
       await this._operation.abort();
     }
     this._canceledAt.set(new Date().getTime());
+  }
+
+  private clearInterval(): void {
+    clearInterval(this._timer.value);
+    this._timer.reset();
+  }
+
+  public stop(): void {
+    this.cancel();
   }
 
 }

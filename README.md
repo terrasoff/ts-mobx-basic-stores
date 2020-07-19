@@ -92,8 +92,6 @@ Run `npm run test`.
 
 # Roadmap
 
-- Add tests to timer store.
-
 - Get stable 1.0.0 release ready.
 
 - Segregate all stores to separate packages later when it's stable (As for now, all stores combined to single package to develop and maintain it faster).
