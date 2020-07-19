@@ -1,5 +1,29 @@
 import { NumericStore } from '@src';
 
+describe('isDefault', () => {
+  test('Positive', () => {
+    const defaultValue = 1;
+    const store = new NumericStore(defaultValue);
+    expect(store.value).toEqual(defaultValue);
+    expect(store.isDefault).toBeTruthy();
+  });
+  test('Positive using options', () => {
+    const value = 1;
+    const defaultValue = 2;
+    const store = new NumericStore(value, { defaultValue });
+    expect(store.value).toEqual(value);
+    expect(store.isDefault).toBeFalsy();
+    expect(store.set(defaultValue).value).toEqual(defaultValue);
+    expect(store.isDefault).toBeTruthy();
+  });
+  test('Negative', () => {
+    const defaultValue = 1;
+    const anotherValue = 2;
+    const store = new NumericStore(defaultValue);
+    expect(store.set(anotherValue).value).toEqual(anotherValue);
+    expect(store.isDefault).toBeFalsy();
+  });
+});
 describe('isPositive', () => {
   test('Zero is not positive', () => {
     const store = new NumericStore(0);
@@ -75,4 +99,14 @@ test('decrement', () => {
 test('set', () => {
   const store = new NumericStore(8);
   expect(store.set(10).value).toEqual(10);
+});
+test('reset', () => {
+  const defaultValue = 1;
+  const anotherValue = 2;
+  const store = new NumericStore(defaultValue);
+  expect(store.isDefault).toBeTruthy();
+  store.set(anotherValue);
+  expect(store.isDefault).toBeFalsy();
+  expect(store.reset().value).toEqual(defaultValue);
+  expect(store.isDefault).toBeTruthy();
 });

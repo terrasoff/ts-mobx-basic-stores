@@ -1,11 +1,18 @@
 import { action, computed, observable } from 'mobx';
+import { NumericStoreOptions } from './NumericStoreOptions';
 
 export class NumericStore {
 
   @observable
   private _value: number;
 
-  constructor(value: number) {
+  @observable
+  private _defaultValue: number;
+
+  constructor(
+    value: number,
+    options: NumericStoreOptions = {}
+  ) {
     this.add = this.add.bind(this);
     this.subtract = this.subtract.bind(this);
     this.multiply = this.multiply.bind(this);
@@ -15,11 +22,19 @@ export class NumericStore {
     this.set = this.set.bind(this);
 
     this._value = value;
+    this._defaultValue = options?.defaultValue === undefined
+      ? value
+      : options.defaultValue;
   }
 
   @computed
   public get value(): number {
     return this._value;
+  }
+
+  @computed
+  public get isDefault(): boolean {
+    return this._value === this._defaultValue;
   }
 
   @computed
@@ -86,6 +101,11 @@ export class NumericStore {
     return this;
   }
 
-  // add method on demand
+  @action
+  public reset(): this {
+    this._value = this._defaultValue;
+
+    return this;
+  }
 
 }
