@@ -1,1 +1,1 @@
-export { TimerStore } from "./TimerStore";
+export { TimerStore } from './TimerStore';

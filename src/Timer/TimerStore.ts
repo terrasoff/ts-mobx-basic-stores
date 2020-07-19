@@ -2,40 +2,31 @@ import { ValueStore } from '../Value';
 import { computed } from 'mobx';
 import { NumberOfMilliseconds, UnixTimestamp } from '../Types';
 import { TimerStoreOptions } from './TimerStoreOptions';
+import { AsyncOperationStore } from '@src/AsyncOperation';
 
 export class TimerStore {
 
   private readonly _timeout: NumberOfMilliseconds;
 
-  private readonly _operation: VoidFunction;
+  private readonly _operation: AsyncOperationStore<void>;
 
   private readonly _timer = new ValueStore<NodeJS.Timer>();
 
   private readonly _options: TimerStoreOptions;
 
-  private readonly _startedAt = new ValueStore<UnixTimestamp>();
+  private _startedAt = new ValueStore<UnixTimestamp>();
 
-  private readonly _lapStartedAt = new ValueStore<UnixTimestamp>();
+  private _doneAt = new ValueStore<UnixTimestamp>();
 
-  private readonly _lapPausedAt = new ValueStore<UnixTimestamp>();
-
-  private readonly _lapTimeRemained = new ValueStore<NumberOfMilliseconds>();
-  
-  private readonly _lapCount = new ValueStore<number>(0, {
-    defaultValue: 0,
-  });
+  private _canceledAt = new ValueStore<UnixTimestamp>();
 
   constructor(
-    operation: VoidFunction,
+    operation: AsyncOperationStore<void>,
     timout: NumberOfMilliseconds,
     options: Partial<TimerStoreOptions> = {},
   ) {
     this.start = this.start.bind(this);
-    this.pause = this.pause.bind(this);
-    this.resume = this.resume.bind(this);
-    this.stop = this.stop.bind(this);
-    this.startNextLap = this.startNextLap.bind(this);
-    this.scheduleNextLap = this.scheduleNextLap.bind(this);
+    this.cancel = this.cancel.bind(this);
 
     this._operation = operation;
     this._timeout = timout;
@@ -53,67 +44,43 @@ export class TimerStore {
   }
 
   @computed
-  public get lapStartedAt(): number {
-    return this._lapStartedAt.value;
+  public get doneAt(): number {
+    return this._doneAt.value;
   }
 
   @computed
-  public get lapPausedAt(): number {
-    return this._lapPausedAt.value;
-  }
-
-  @computed
-  public get lapTimeRemained(): number {
-    return this._lapTimeRemained.value;
-  }
-
-  @computed
-  public get lapCount(): number {
-    return this._lapCount.value;
+  public get canceledAt(): number {
+    return this._canceledAt.value;
   }
 
   @computed
   public get isStarted(): boolean {
-    return !this._startedAt.isDefault;
+    return (
+      !this._startedAt.isDefault
+      && !this.isCanceled
+    );
+  }
+
+  @computed
+  public get isDone(): boolean {
+    return (
+      !this._doneAt.isDefault
+      && !this.isCanceled
+    );
+  }
+
+  @computed
+  public get isCanceled(): boolean {
+    return !this._canceledAt.isDefault;
   }
 
   @computed
   public get isRunning(): boolean {
     return (
-      !this._lapStartedAt.isDefault
-      && this._lapPausedAt.isDefault
+      this.isStarted
+      && !this.isCanceled
+      && !this.isDone
     );
-  }
-
-  @computed
-  public get isPaused(): boolean {
-    return (
-      !this._lapPausedAt.isDefault
-      && !this.isRunning
-    );
-  }
-
-  private startNextLap(): void {
-    this._lapTimeRemained.reset();
-    this._lapStartedAt.set(new Date().getTime());
-    this._lapCount.set(
-      this._lapCount.value + 1
-    );
-  }
-
-  private scheduleNextLap(): void {
-    this.startNextLap();
-
-    const interval = setInterval(
-      async(): Promise<void> => {
-        this._lapPausedAt.reset();
-        await this._operation();
-        this.startNextLap();
-      },
-      this._timeout
-    );
-
-    this._timer.set(interval);
   }
 
   private clearInterval(): void {
@@ -121,44 +88,26 @@ export class TimerStore {
     this._timer.reset();
   }
 
-  public start(): void {
-    if (!this._timer.isDefault) {
+  public async start(): Promise<void> {
+    if (this.isRunning) {
       return;
     }
 
+    this._doneAt.reset();
+    this._canceledAt.reset();
     this._startedAt.set(new Date().getTime());
-    this.scheduleNextLap();
+
+    await this._operation.execute();
+
+    this._doneAt.set(new Date().getTime());
   }
 
-  public pause(): void {
-    this._lapPausedAt.set(new Date().getTime());
-
-    this._lapTimeRemained.set(
-      this._lapStartedAt.value + this._timeout - this._lapPausedAt.value
-    );
+  public async cancel(): Promise<void> {
     this.clearInterval();
-  }
-
-  public resume(): void {
-    if (this.isPaused) {
-      this._lapPausedAt.reset();
-      setTimeout(
-        async(): Promise<void> => {
-          await this._operation();
-          this.scheduleNextLap();
-        },
-        this._lapTimeRemained.value
-      );
+    if (this._operation.abort) {
+      await this._operation.abort();
     }
-  }
-
-  public stop(): void {
-    this.clearInterval();
-    this._startedAt.reset();
-    this._lapCount.reset();
-    this._lapTimeRemained.reset();
-    this._lapStartedAt.reset();
-    this._lapPausedAt.reset();
+    this._canceledAt.set(new Date().getTime());
   }
 
 }
