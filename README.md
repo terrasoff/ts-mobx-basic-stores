@@ -22,7 +22,7 @@ You can easily control operation state based on OperationState, run operation in
 
 Represents the logic of an observable boolean value. 
 
-Looks similar to **ToggleState** but semantically is more appropriate for boolean flags like.
+Looks similar to **ToggleState** but semantically is more appropriate for boolean flags.
 
 Cases for **BooleanStore**: `phone.isActivated.true` or `car.isAvailable.false`.
 
@@ -33,6 +33,10 @@ Cases for **ToggleState**: `modal.visibility.isOff` or `lighter.power.isOn`.
 Represents a container with callbacks (like mobx reactions or any others) that should be called later to perform some disposal.
 
 You can fill the container in a runtime and call dispose-method accordingly to yours application lifecycle.
+
+You can find a [good example](https://codesandbox.io/s/typescript-mobx-form-state-library-usage-example-hsdmh?file=/src/Forms/BasicForm/BasicFormStore.ts) 
+of usage with [ts-mobx-form-state](https://www.npmjs.com/package/ts-mobx-form-state)
+to dispose reactions.
 
 ### [Numeric](https://codesandbox.io/s/observable-numeric-store-6clbc)
 
