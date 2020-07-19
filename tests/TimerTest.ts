@@ -47,30 +47,41 @@ test('Check start to cancel transition', async(): Promise<void> => {
 describe('Check loop', () => {
   test('No loop configured', async(): Promise<void> => {
     const execute = jest.fn();
-    const abort = jest.fn();
-    const delayBetweenLoops = 1;
-    const operation = new AsyncOperationStore<void>(execute, { abort });
+    const timeout = 1;
+    const operation = new AsyncOperationStore<void>(execute);
     const store = new TimerStore(operation, 1);
-    store.start();
-    await when((): boolean => store.isDone);
+
+    await store.start();
+
+    await when(() => store.isDone);
     expect(execute.mock.calls.length).toEqual(1);
-    const result = when((): boolean => store.isRunning, { timeout: delayBetweenLoops });
-    expect(result).rejects.toThrow();
+
+    await expect(
+      when(() => store.isRunning, { timeout: timeout + 1 })
+    ).rejects.toThrow();
     expect(execute.mock.calls.length).toEqual(1);
+
+    await store.stop();
   });
   test('Loop is configured', async(): Promise<void> => {
     const execute = jest.fn();
-    const abort = jest.fn();
-    const operation = new AsyncOperationStore<void>(execute, { abort });
-    const store = new TimerStore(operation, 1, { delayBetweenLoops: 1 });
-    store.start();
-    await when((): boolean => store.isDone);
+    const operation = new AsyncOperationStore<void>(execute);
+    const timeout = 2;
+    const delayBetweenLoops = 1;
+    const store = new TimerStore(operation, timeout, { delayBetweenLoops });
+    await store.start();
+
+    await when(() => store.isDone, { timeout: delayBetweenLoops });
+    expect(store.isDone).toBeTruthy();
     expect(execute.mock.calls.length).toEqual(1);
-    await when((): boolean => store.isRunning);
+
+    await when(() => store.isRunning, { timeout: delayBetweenLoops + 1 });
     expect(store.isRunning).toBeTruthy();
-    await when((): boolean => store.isDone);
+
+    await when(() => store.isDone, { timeout: delayBetweenLoops });
     expect(store.isDone).toBeTruthy();
     expect(execute.mock.calls.length).toEqual(2);
-    store.stop();
+
+    await store.stop();
   });
 });

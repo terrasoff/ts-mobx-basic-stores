@@ -26,7 +26,9 @@ export class TimerStore {
     options: Partial<TimerStoreOptions> = {},
   ) {
     this.start = this.start.bind(this);
+    this.stop = this.stop.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.scheduleNextLoop = this.scheduleNextLoop.bind(this);
 
     this._operation = operation;
     this._timeout = timout;
@@ -100,6 +102,7 @@ export class TimerStore {
 
   private scheduleNextLoop(): void {
     if (this._options.delayBetweenLoops) {
+      this.clearInterval();
       this._timer.set(
         setInterval(
           this.start,
@@ -122,8 +125,8 @@ export class TimerStore {
     this._timer.reset();
   }
 
-  public stop(): void {
-    this.cancel();
+  public async stop(): Promise<void> {
+    await this.cancel();
   }
 
 }
