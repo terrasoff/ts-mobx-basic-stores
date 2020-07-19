@@ -1,10 +1,19 @@
 import { action, computed, observable } from 'mobx';
 import { OperationState } from './OperationState';
+import { OperationStateType } from "./Types";
 
 export class OperationStateStore {
 
   @observable
   private _status: OperationState = OperationState.Idle;
+
+  constructor() {
+    this.idle = this.idle.bind(this);
+    this.start = this.start.bind(this);
+    this.done = this.done.bind(this);
+    this.abort = this.abort.bind(this);
+    this.fail = this.fail.bind(this);
+  }
 
   @computed
   public get status(): OperationState {
@@ -55,14 +64,6 @@ export class OperationStateStore {
     return !this.isCompleted;
   }
 
-  constructor() {
-    this.idle = this.idle.bind(this);
-    this.start = this.start.bind(this);
-    this.done = this.done.bind(this);
-    this.abort = this.abort.bind(this);
-    this.fail = this.fail.bind(this);
-  }
-
   @action
   public idle(): void {
     this._status = OperationState.Idle;
@@ -91,6 +92,18 @@ export class OperationStateStore {
   @action
   public fail(): void {
     this._status = OperationState.Failed;
+  }
+
+  @computed
+  public get current(): OperationStateType {
+    return {
+      isIdle: this.isIdle,
+      isRunning: this.isRunning,
+      isPaused: this.isPaused,
+      isDone: this.isDone,
+      isAborted: this.isAborted,
+      isFailed: this.isFailed,
+    };
   }
 
 }
